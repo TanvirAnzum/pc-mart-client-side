@@ -5,12 +5,12 @@ import Navbar from "../components/Navbar";
 
 const Layout = () => {
   return (
-    <div
-      className="w-full md:w-[80%] min-h-[100vh] mx-auto"
-      data-theme="winter"
-    >
+    <div className="w-full min-h-[100vh] mx-auto" data-theme="winter">
       <Navbar />
-      <Outlet />
+      <div className="min-h-[66vh]">
+        <Outlet />
+      </div>
+
       <Footer />
     </div>
   );
