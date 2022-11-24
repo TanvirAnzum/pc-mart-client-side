@@ -5,7 +5,10 @@ import Navbar from "../components/Navbar";
 
 const Layout = () => {
   return (
-    <div>
+    <div
+      className="w-full md:w-[80%] min-h-[100vh] mx-auto"
+      data-theme="winter"
+    >
       <Navbar />
       <Outlet />
       <Footer />
