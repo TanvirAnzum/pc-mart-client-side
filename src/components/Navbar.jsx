@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
-    <div className="navbar bg-base-100 shadow shadow-neutral h-[10vh] rounded">
+    <div className="navbar bg-base-100 shadow shadow-neutral h-[10vh] rounded p-5">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -81,7 +81,7 @@ const Navbar = () => {
                 <path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" />
               </svg>
             </Link>
-            <ul className="p-2">
+            <ul className="p-2 z-[100] bg-slate-100">
               <li>
                 <Link>Desktop</Link>
               </li>
