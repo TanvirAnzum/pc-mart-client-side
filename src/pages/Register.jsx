@@ -1,7 +1,9 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import { createUser } from "../APIs/usersAPI";
 import { registerUser } from "../firebase/authenticaion";
 import { getImageUrl } from "../utils/getImageUrl";
+import { setJwt } from "../utils/setJwt";
 
 const Register = () => {
   const { register, reset, handleSubmit } = useForm();
@@ -18,7 +20,13 @@ const Register = () => {
       displayName,
       phoneNumber,
     });
-    console.log(response);
+    await setJwt(email);
+    await createUser({
+      uid: response.uid,
+      email,
+      address,
+      role,
+    });
     reset();
   };
 

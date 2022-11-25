@@ -1,8 +1,10 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import { createUser } from "../APIs/usersAPI";
 import googleIcon from "../assets/images/google.png";
 import { signIn, signInWithGoogle } from "../firebase/authenticaion";
+import { setJwt } from "../utils/setJwt";
 
 const Login = () => {
   const { register, handleSubmit, reset } = useForm();
@@ -10,13 +12,22 @@ const Login = () => {
   const handleLogin = async (data) => {
     const { email, password } = data;
     const response = await signIn({ email, password });
-    console.log(response);
+    await setJwt(response.email);
+
     reset();
   };
 
   const loginWithGoogle = async () => {
     const response = await signInWithGoogle();
-    console.log(response);
+    await setJwt(response.email);
+    await createUser(
+      {
+        uid: response.uid,
+        email: response.email,
+        role: "buyer",
+      },
+      true
+    );
   };
 
   return (

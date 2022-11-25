@@ -5,6 +5,7 @@ import { userSignOut } from "../firebase/authenticaion.js";
 
 const Navbar = () => {
   const auth = useContext(AuthContext);
+  const { user } = auth || {};
 
   return (
     <div className="navbar bg-base-100 shadow shadow-neutral h-[10vh] rounded p-5">
@@ -102,11 +103,23 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-      <div className="navbar-end">
+      <div className="navbar-end gap-8">
         {auth?.accessToken ? (
-          <button className="btn btn-error" onClick={userSignOut}>
-            Log Out
-          </button>
+          <>
+            <div
+              className="tooltip tooltip-bottom tooltip-primary"
+              data-tip={user.displayName}
+            >
+              <img
+                src={user.photoURL}
+                alt=""
+                className="hidden sm:block w-[2em] rounded-full ring cursor-pointer"
+              />
+            </div>
+            <button className="btn btn-error" onClick={userSignOut}>
+              Log Out
+            </button>
+          </>
         ) : (
           <Link className="btn btn-success" to="/login">
             Login
