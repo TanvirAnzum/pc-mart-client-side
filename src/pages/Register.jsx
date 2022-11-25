@@ -1,42 +1,45 @@
-import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { registerUser } from "../firebase/authenticaion";
+import { getImageUrl } from "../utils/getImageUrl";
 
 const Register = () => {
-  const { register, handleSubmit, reset } = useForm();
+  const { register, reset, handleSubmit } = useForm();
 
-  const handleRegister = async (data) => {
-    console.log(data);
-    const img = data.image[0];
-    const formData = new FormData();
-    console.log(img);
-    formData.append("image", img);
-    console.log(formData);
-    const response = await axios.post(
-      "https://api.imgbb.com/1/upload?expiration=600&key=da7bfb9b12713e6abf6626f740b9b0e7",
-      formData
-    );
-
-    console.log(response.data);
-
+  const submitHandler = async (data) => {
+    const { email, phoneNumber, address, image, role, password, displayName } =
+      data;
+    const img = await getImageUrl(image);
+    const photoURL = img.data.display_url;
+    const response = await registerUser({
+      email,
+      password,
+      photoURL,
+      displayName,
+      phoneNumber,
+    });
+    console.log(response);
     reset();
   };
 
   return (
     <form
-      className="w-[30em] min-h-full self-center p-5 border rounded my-20"
-      onSubmit={handleSubmit(handleRegister)}
+      className="w-[30em] my-10 p-8 border self-center rounded-xl border-none shadow-2xl bg-base-200"
+      onSubmit={handleSubmit(submitHandler)}
     >
+      <h1 className="text-center text-xl font-semibold text-primary">
+        Registration Form
+      </h1>
       <div className="form-control">
         <label className="label">
-          <span className="label-text">Full Name</span>
+          <span className="label-text">Display Name</span>
         </label>
         <input
           type="text"
-          placeholder="Full Name"
+          placeholder="Display Name"
           className="input input-bordered"
           required
-          {...register("fName")}
+          {...register("displayName")}
         />
       </div>
       <div className="form-control">
@@ -51,7 +54,7 @@ const Register = () => {
           {...register("email")}
         />
       </div>
-      <div className="form-control ">
+      <div className="form-control">
         <label className="label">
           <span className="label-text">Phone Number</span>
         </label>
@@ -60,37 +63,45 @@ const Register = () => {
           placeholder="Phone Number"
           className="input input-bordered"
           required
-          {...register("phone")}
+          {...register("phoneNumber")}
         />
+      </div>
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text">Address</span>
+        </label>
+        <input
+          type="text"
+          placeholder="Address"
+          className="input input-bordered"
+          required
+          {...register("address")}
+        />
+      </div>
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text">Acount Type</span>
+        </label>
+        <select
+          className="select select-bordered w-full"
+          defaultValue="buyer"
+          {...register("role")}
+        >
+          <option value="buyer">Buyer Account</option>
+          <option value="seller">Seller Account</option>
+        </select>
       </div>
 
       <div className="form-control">
         <label className="label">
-          <span className="label-text">Account Type</span>
-        </label>
-        <select
-          className="select select-bordered"
-          defaultValue={1}
-          {...register("accontType")}
-        >
-          <option value={1}>Buyer Account</option>
-          <option value={2}>Seller Account</option>
-        </select>
-      </div>
-
-      <div className="form-control w-full">
-        <label className="label">
-          <span className="label-text">Upload a profile Image</span>
+          <span className="label-text">Profile Image</span>
         </label>
         <input
           type="file"
-          className="file-input file-input-bordered w-full "
-          accept="image/x-png,image/jpeg"
-          required
+          className="file-input w-full input-bordered"
           {...register("image")}
         />
       </div>
-
       <div className="form-control">
         <label className="label">
           <span className="label-text">Password</span>
@@ -103,7 +114,6 @@ const Register = () => {
           {...register("password")}
         />
       </div>
-
       <div className="form-control mt-6">
         <button className="btn btn-primary" type="submit">
           Register

@@ -2,13 +2,21 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import googleIcon from "../assets/images/google.png";
+import { signIn, signInWithGoogle } from "../firebase/authenticaion";
 
 const Login = () => {
   const { register, handleSubmit, reset } = useForm();
 
-  const handleLogin = (data) => {
-    console.log(data);
+  const handleLogin = async (data) => {
+    const { email, password } = data;
+    const response = await signIn({ email, password });
+    console.log(response);
     reset();
+  };
+
+  const loginWithGoogle = async () => {
+    const response = await signInWithGoogle();
+    console.log(response);
   };
 
   return (
@@ -53,7 +61,12 @@ const Login = () => {
           <p className="text-sm font-semibold text-secondary mx-auto">
             Sign up using
           </p>
-          <img src={googleIcon} alt="" className="w-[2em] mx-auto" />
+          <img
+            src={googleIcon}
+            onClick={loginWithGoogle}
+            alt=""
+            className="w-[2em] mx-auto cursor-pointer"
+          />
         </div>
         <div className="form-control mt-2">
           <Link

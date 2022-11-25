@@ -9,7 +9,7 @@ const Advertise = () => {
         Products you may like!
       </h1>
       <div className="w-full h-[20em] ring">
-        <Carousel>
+        <Carousel showThumbs={false}>
           <div className="w-full h-[20em] flex items-center justify-center">
             <div className="w-[40%]">
               <img src={img} className="w-full h-[12em]" alt="sds" />

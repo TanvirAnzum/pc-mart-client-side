@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/authContext";
+import { userSignOut } from "../firebase/authenticaion.js";
 
 const Navbar = () => {
+  const auth = useContext(AuthContext);
+
   return (
     <div className="navbar bg-base-100 shadow shadow-neutral h-[10vh] rounded p-5">
       <div className="navbar-start">
@@ -99,9 +103,15 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link className="btn btn-success" to="/login">
-          Login
-        </Link>
+        {auth?.accessToken ? (
+          <button className="btn btn-error" onClick={userSignOut}>
+            Log Out
+          </button>
+        ) : (
+          <Link className="btn btn-success" to="/login">
+            Login
+          </Link>
+        )}
       </div>
     </div>
   );
