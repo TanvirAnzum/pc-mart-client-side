@@ -5,8 +5,8 @@ export const getJWT = async (data) => {
   return response.data;
 };
 
-export const checkAdmin = async (email) => {
-  const response = await axios.post("/admin", email);
+export const getRole = async (email) => {
+  const response = await axios.get(`/role?email=${email}`);
   return response.data;
 };
 

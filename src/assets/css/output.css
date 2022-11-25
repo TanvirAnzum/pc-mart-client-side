@@ -3979,6 +3979,10 @@ input[type="number"]::-webkit-inner-spin-button,
   margin-top: 0.5rem;
 }
 
+.block {
+  display: block;
+}
+
 .flex {
   display: flex;
 }
@@ -4015,6 +4019,22 @@ input[type="number"]::-webkit-inner-spin-button,
   height: 10em;
 }
 
+.h-full {
+  height: 100%;
+}
+
+.h-\[200vh\] {
+  height: 200vh;
+}
+
+.h-\[120vh\] {
+  height: 120vh;
+}
+
+.h-\[140vh\] {
+  height: 140vh;
+}
+
 .min-h-\[100vh\] {
   min-height: 100vh;
 }
@@ -4029,6 +4049,18 @@ input[type="number"]::-webkit-inner-spin-button,
 
 .min-h-\[30vh\] {
   min-height: 30vh;
+}
+
+.min-h-\[60vh\] {
+  min-height: 60vh;
+}
+
+.min-h-\[2000px\] {
+  min-height: 2000px;
+}
+
+.min-h-\[120vh\] {
+  min-height: 120vh;
 }
 
 .w-5 {
@@ -4077,6 +4109,14 @@ input[type="number"]::-webkit-inner-spin-button,
 
 .w-\[3em\] {
   width: 3em;
+}
+
+.w-\[40em\] {
+  width: 40em;
+}
+
+.w-\[70\%\] {
+  width: 70%;
 }
 
 .max-w-sm {
@@ -4164,8 +4204,20 @@ input[type="number"]::-webkit-inner-spin-button,
   gap: 2rem;
 }
 
+.self-start {
+  align-self: flex-start;
+}
+
 .self-center {
   align-self: center;
+}
+
+.overflow-visible {
+  overflow: visible;
+}
+
+.overflow-y-visible {
+  overflow-y: visible;
 }
 
 .rounded {
