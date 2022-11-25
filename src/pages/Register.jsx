@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { createUser } from "../APIs/usersAPI";
 import { registerUser } from "../firebase/authenticaion";
@@ -7,10 +7,12 @@ import { setJwt } from "../utils/setJwt";
 
 const Register = () => {
   const { register, reset, handleSubmit } = useForm();
+  const [error, setError] = useState("");
 
   const submitHandler = async (data) => {
     const { email, phoneNumber, address, image, role, password, displayName } =
       data;
+
     const img = await getImageUrl(image);
     const photoURL = img.data.display_url;
     const response = await registerUser({
@@ -20,13 +22,18 @@ const Register = () => {
       displayName,
       phoneNumber,
     });
-    await setJwt(email);
-    await createUser({
-      uid: response.uid,
-      email,
-      address,
-      role,
-    });
+    if (response.accessToken) {
+      await setJwt(email);
+      await createUser({
+        uid: response.uid,
+        email,
+        address,
+        role,
+      });
+    } else {
+      setError(response);
+    }
+
     reset();
   };
 
@@ -122,6 +129,7 @@ const Register = () => {
           {...register("password")}
         />
       </div>
+      {error && <p className="font-semibold text-error">{error}</p>}
       <div className="form-control mt-6">
         <button className="btn btn-primary" type="submit">
           Register

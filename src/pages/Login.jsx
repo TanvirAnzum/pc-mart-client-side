@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { createUser } from "../APIs/usersAPI";
@@ -8,26 +8,35 @@ import { setJwt } from "../utils/setJwt";
 
 const Login = () => {
   const { register, handleSubmit, reset } = useForm();
+  const [error, setError] = useState("");
 
   const handleLogin = async (data) => {
     const { email, password } = data;
     const response = await signIn({ email, password });
-    await setJwt(response.email);
+    if (response.accessToken) {
+      await setJwt(response.email);
+    } else {
+      setError(response);
+    }
 
     reset();
   };
 
   const loginWithGoogle = async () => {
     const response = await signInWithGoogle();
-    await setJwt(response.email);
-    await createUser(
-      {
-        uid: response.uid,
-        email: response.email,
-        role: "buyer",
-      },
-      true
-    );
+    if (response.accessToken) {
+      await setJwt(response.email);
+      await createUser(
+        {
+          uid: response.uid,
+          email: response.email,
+          role: "buyer",
+        },
+        true
+      );
+    } else {
+      setError(response);
+    }
   };
 
   return (
@@ -61,6 +70,7 @@ const Login = () => {
               Forgot password?
             </Link>
           </label>
+          {error && <p className="font-semibold text-error">{error}</p>}
         </div>
         <div className="form-control mt-6">
           <button className="btn btn-primary" type="submit">

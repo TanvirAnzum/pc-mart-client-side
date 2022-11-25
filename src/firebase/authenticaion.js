@@ -36,7 +36,7 @@ export const registerUser = async ({
 
     return response.user;
   } catch (error) {
-    return error;
+    return error.message;
   }
 };
 

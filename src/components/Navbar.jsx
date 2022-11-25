@@ -113,7 +113,7 @@ const Navbar = () => {
               <img
                 src={user.photoURL}
                 alt=""
-                className="hidden sm:block w-[2em] rounded-full ring cursor-pointer"
+                className="hidden sm:block w-[2em] h-[2em] rounded-full ring cursor-pointer"
               />
             </div>
             <button className="btn btn-error" onClick={userSignOut}>
