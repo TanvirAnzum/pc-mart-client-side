@@ -1,7 +1,7 @@
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { useEffect, useState } from "react";
 import { RouterProvider } from "react-router";
-import { AuthProvider } from "./context/authContext";
+import { AuthProvider } from "./context/AuthContext";
 import { router } from "./routers/router";
 import GlobalLoader from "./ui/GlobalLoader";
 import Layout from "./ui/Layout";

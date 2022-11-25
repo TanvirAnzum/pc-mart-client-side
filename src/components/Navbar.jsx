@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../context/authContext";
+import { AuthContext } from "../context/AuthContext";
 import { userSignOut } from "../firebase/authenticaion.js";
 
 const Navbar = () => {
@@ -48,13 +48,13 @@ const Navbar = () => {
               </Link>
               <ul className="p-2">
                 <li>
-                  <Link>Desktop</Link>
+                  <Link to="/category/1">Desktop</Link>
                 </li>
                 <li>
-                  <Link>Components</Link>
+                  <Link to="/category/2">Components</Link>
                 </li>
                 <li>
-                  <Link>Accesories</Link>
+                  <Link to="/category/3">Accesories</Link>
                 </li>
               </ul>
             </li>
@@ -87,13 +87,13 @@ const Navbar = () => {
             </Link>
             <ul className="p-2 z-[100] bg-slate-100">
               <li>
-                <Link>Desktop</Link>
+                <Link to="/category/1">Desktop</Link>
               </li>
               <li>
-                <Link>Components</Link>
+                <Link to="/category/2">Components</Link>
               </li>
               <li>
-                <Link>Accessories</Link>
+                <Link to="/category/3">Accessories</Link>
               </li>
             </ul>
           </li>

@@ -67,6 +67,7 @@ export const signInWithGoogle = async () => {
 export const userSignOut = async () => {
   try {
     localStorage.removeItem("authToken");
+    localStorage.removeItem("auth");
     await signOut(auth);
   } catch (error) {
     console.log(error);

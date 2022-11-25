@@ -5,6 +5,8 @@ import Products from "../pages/Products";
 import Register from "../pages/Register";
 import ErrorPage from "../ui/ErrorPage";
 import Layout from "../ui/Layout";
+import PrivateRoute from "./routes/PrivateRoute";
+import PublicRoute from "./routes/PublicRoute";
 
 export const router = createBrowserRouter([
   {
@@ -18,15 +20,27 @@ export const router = createBrowserRouter([
       },
       {
         path: "/category/:categoryId",
-        element: <Products />,
+        element: (
+          <PrivateRoute>
+            <Products />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/login",
-        element: <Login />,
+        element: (
+          <PublicRoute>
+            <Login />
+          </PublicRoute>
+        ),
       },
       {
         path: "/register",
-        element: <Register />,
+        element: (
+          <PublicRoute>
+            <Register />
+          </PublicRoute>
+        ),
       },
     ],
   },
