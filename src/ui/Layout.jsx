@@ -7,7 +7,7 @@ const Layout = () => {
   return (
     <div className="w-full min-h-[100vh] mx-auto" data-theme="winter">
       <Navbar />
-      <div className="min-h-[66vh]">
+      <div className="w-full min-h-[66vh] flex flex-col justify-center">
         <Outlet />
       </div>
 

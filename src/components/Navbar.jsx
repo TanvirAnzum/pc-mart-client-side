@@ -59,7 +59,7 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <Link className="btn btn-ghost normal-case text-xl font-serif">
+        <Link className="btn btn-ghost normal-case text-xl font-serif" to="/">
           PC Mart
         </Link>
       </div>
@@ -99,7 +99,9 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link className="btn btn-success">Login</Link>
+        <Link className="btn btn-success" to="/login">
+          Login
+        </Link>
       </div>
     </div>
   );
