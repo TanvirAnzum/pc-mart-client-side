@@ -1,11 +1,24 @@
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 
 const Register = () => {
   const { register, handleSubmit, reset } = useForm();
 
-  const handleRegister = (data) => {
+  const handleRegister = async (data) => {
     console.log(data);
+    const img = data.image[0];
+    const formData = new FormData();
+    console.log(img);
+    formData.append("image", img);
+    console.log(formData);
+    const response = await axios.post(
+      "https://api.imgbb.com/1/upload?expiration=600&key=da7bfb9b12713e6abf6626f740b9b0e7",
+      formData
+    );
+
+    console.log(response.data);
+
     reset();
   };
 
@@ -55,10 +68,12 @@ const Register = () => {
         <label className="label">
           <span className="label-text">Account Type</span>
         </label>
-        <select className="select select-bordered" {...register("accontType")}>
-          <option selected value={1}>
-            Buyer Account
-          </option>
+        <select
+          className="select select-bordered"
+          defaultValue={1}
+          {...register("accontType")}
+        >
+          <option value={1}>Buyer Account</option>
           <option value={2}>Seller Account</option>
         </select>
       </div>
