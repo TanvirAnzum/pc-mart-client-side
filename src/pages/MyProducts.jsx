@@ -8,7 +8,7 @@ const MyProducts = () => {
   const { user } = useContext(AuthContext) || {};
   const { data, isLoading } = useQuery({
     queryKey: ["myProducts"],
-    queryFn: () => getProducts(user.email),
+    queryFn: () => getProducts({ email: user.email }),
   });
 
   console.log(data);

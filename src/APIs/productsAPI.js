@@ -6,7 +6,10 @@ export const createProduct = async (data) => {
 };
 
 export const getProducts = async ({ email, status }) => {
-  const response = await axios.get(`/products?email=${email}&status=${status}`);
+  let response;
+  if (status)
+    response = await axios.get(`/products?email=${email}&status=${status}`);
+  else response = await axios.get(`/products?email=${email}`);
   return response.data;
 };
 

@@ -15,6 +15,7 @@ import DashBoardLayout from "../ui/DashBoardLayout";
 import ErrorPage from "../ui/ErrorPage";
 import Layout from "../ui/Layout";
 import PrivateRoute from "./routes/PrivateRoute";
+import ProtectedRoute from "./routes/ProtectedRoute";
 import PublicRoute from "./routes/PublicRoute";
 
 export const router = createBrowserRouter([
@@ -68,31 +69,59 @@ export const router = createBrowserRouter([
       },
       {
         path: "/dashboard/myOrder",
-        element: <MyOrder />,
+        element: (
+          <ProtectedRoute role="buyer">
+            <MyOrder />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/dashboard/addProduct",
-        element: <AddProduct />,
+        element: (
+          <ProtectedRoute role="seller">
+            <AddProduct />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/dashboard/myProducts",
-        element: <MyProducts />,
+        element: (
+          <ProtectedRoute role="seller">
+            <MyProducts />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/dashboard/myBuyers",
-        element: <MyBuyers />,
+        element: (
+          <ProtectedRoute role="seller">
+            <MyBuyers />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/dashboard/allSeller",
-        element: <AllSeller />,
+        element: (
+          <ProtectedRoute role="admin">
+            <AllSeller />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/dashboard/allBuyers",
-        element: <AllBuyers />,
+        element: (
+          <ProtectedRoute role="admin">
+            <AllBuyers />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/dashboard/reportedItems",
-        element: <ReportedItem />,
+        element: (
+          <ProtectedRoute role="admin">
+            <ReportedItem />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
