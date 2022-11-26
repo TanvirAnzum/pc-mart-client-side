@@ -3,7 +3,7 @@ import React from "react";
 const ProductModal = ({ product, setOpenModal }) => {
   const {
     image,
-    remarks,
+    address,
     description,
     category,
     originalPrice,
@@ -27,7 +27,7 @@ const ProductModal = ({ product, setOpenModal }) => {
         Condition:
         <p className="badge badge-accent mx-2">{conditionType}</p>
       </p>
-      <p>Remarks: {remarks}</p>
+      <p>Address: {address}</p>
       <p>Description: {description}</p>
       <button
         className="btn w-[8em] self-center btn-error"

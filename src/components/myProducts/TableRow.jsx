@@ -15,6 +15,7 @@ const TableRow = ({ product, index }) => {
     mutationFn: deleteProduct,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["myProducts"] });
+      queryClient.invalidateQueries({ queryKey: ["categoryProducts"] });
     },
   });
 
@@ -23,6 +24,8 @@ const TableRow = ({ product, index }) => {
     mutationFn: updateProduct,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["myProducts"] });
+      queryClient.invalidateQueries({ queryKey: ["categoryProducts"] });
+      queryClient.invalidateQueries({ queryKey: ["addvertiseProduct"] });
     },
   });
 

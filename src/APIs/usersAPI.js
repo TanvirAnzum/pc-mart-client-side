@@ -28,3 +28,8 @@ export const deleteUser = async (id) => {
 export const getUser = async () => {
   // getuser
 };
+
+export const isVerified = async (email) => {
+  const response = await axios.get(`/isVerified?email=${email}`);
+  return response.data;
+};

@@ -16,6 +16,7 @@ const AddProduct = () => {
     mutationFn: createProduct,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["myProducts"] });
+      queryClient.invalidateQueries({ queryKey: ["categoryProducts"] });
     },
   });
   const { user } = useContext(AuthContext);
@@ -136,14 +137,14 @@ const AddProduct = () => {
             </div>
             <div className="form-control">
               <label className="label">
-                <span className="label-text">Remarks</span>
+                <span className="label-text">Address</span>
               </label>
               <input
                 type="text"
-                placeholder="Remarks"
+                placeholder="Address"
                 className="input input-bordered"
                 required
-                {...register("remarks")}
+                {...register("address")}
               />
             </div>
             <div className="form-control">

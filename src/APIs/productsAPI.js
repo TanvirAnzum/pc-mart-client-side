@@ -5,11 +5,17 @@ export const createProduct = async (data) => {
   return response.data;
 };
 
-export const getProducts = async ({ email, status }) => {
-  let response;
-  if (status)
-    response = await axios.get(`/products?email=${email}&status=${status}`);
-  else response = await axios.get(`/products?email=${email}`);
+export const getProducts = async ({ email, status, boost }) => {
+  let query = "";
+  if (email) query += `email=${email}&`;
+  if (status) query += `status=${status}&`;
+  if (boost) query += `boost=${boost}`;
+  const response = await axios.get(`/products?${query}`);
+  return response.data;
+};
+
+export const getProductsByCategory = async (id) => {
+  const response = await axios.get(`/products/${id}`);
   return response.data;
 };
 
