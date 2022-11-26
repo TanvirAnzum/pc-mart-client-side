@@ -1,6 +1,7 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { createProduct } from "../APIs/productsAPI";
 import { AuthContext } from "../context/AuthContext";
@@ -9,9 +10,16 @@ import { getImageUrl } from "../utils/getImageUrl";
 
 const AddProduct = () => {
   const { register, reset, handleSubmit } = useForm();
+  const queryClient = useQueryClient();
   const [isLoading, setIsLoading] = useState(false);
-  const { mutate } = useMutation({ mutationFn: createProduct });
+  const { mutate } = useMutation({
+    mutationFn: createProduct,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["myProducts"] });
+    },
+  });
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const addProduct = async (data) => {
     setIsLoading(() => true);
@@ -22,19 +30,20 @@ const AddProduct = () => {
     setIsLoading(() => false);
     toast.success("Product added SuccessFully!!");
     reset();
+    navigate("/dashboard/myProducts");
   };
 
   return (
     <>
       <form
-        className="w-[70%] my-10 p-8 border self-start rounded-xl border-none shadow-2xl bg-base-200"
+        className="w-[70%] my-10 p-8 border self-center rounded-xl border-none shadow-2xl bg-base-200"
         onSubmit={handleSubmit(addProduct)}
       >
         <h1 className="text-center text-xl font-semibold text-primary">
           Add Product
         </h1>
-        <div className="flex w-full justify-between items-center">
-          <div className="w-[40%]">
+        <div className="flex flex-col lg:flex-row w-full justify-between items-center">
+          <div className="w-full lg:w-[40%]">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Product Title</span>
@@ -98,7 +107,7 @@ const AddProduct = () => {
               />
             </div>
           </div>
-          <div className="w-[40%]">
+          <div className="w-full lg:w-[40%]">
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Category Type</span>
