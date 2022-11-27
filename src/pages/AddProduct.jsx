@@ -27,6 +27,9 @@ const AddProduct = () => {
     const imgLink = await getImageUrl(data.image);
     data.image = imgLink.data.display_url;
     data.seller = user;
+    const date = new Date();
+    data.createdAt = date.toLocaleString();
+    data.status = "unsold";
     mutate(data);
     setIsLoading(() => false);
     toast.success("Product added SuccessFully!!");
