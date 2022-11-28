@@ -25,8 +25,6 @@ const Payment = () => {
     information.productId = booking.product._id;
   }
 
-  console.log(information);
-
   return (
     <div className="w-full p-5 flex flex-col gap-5">
       <div className="w-[96%] sm:w-[30em] mx-auto shadow shadow-neutral rounded flex flex-col gap-2 p-5">

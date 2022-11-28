@@ -16,7 +16,6 @@ export const createUser = async (data, upsert) => {
 };
 
 export const updateUser = async ({ data, mail }) => {
-  console.log(data, mail);
   const response = await axios.patch(`/users?email=${mail}`, data);
   return response.data;
 };

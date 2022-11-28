@@ -11,8 +11,6 @@ const MyProducts = () => {
     queryFn: () => getProducts({ email: user.email }),
   });
 
-  console.log(data);
-
   return (
     <div className="overflow-x-auto w-full p-5 self-start">
       <table className="table w-full">

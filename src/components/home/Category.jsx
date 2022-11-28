@@ -13,15 +13,21 @@ const Category = () => {
       <div className="w-full md:w-[80%] flex flex-col md:flex-row items-center justify-between">
         <div className="w-[20em] h-[10em] flex items-center flex-col justify-center gap-1">
           <img src={pcImg} alt="" />
-          <Link className="btn btn-secondary">Complete PC build</Link>
+          <Link className="btn btn-secondary" to="/category/1">
+            Complete PC build
+          </Link>
         </div>
         <div className="w-[20em] h-[10em] flex items-center flex-col justify-center gap-1">
           <img src={gpuImg} alt="" />
-          <Link className="btn btn-secondary">PC Components</Link>
+          <Link className="btn btn-secondary" to="/category/2">
+            PC Components
+          </Link>
         </div>
         <div className="w-[20em] h-[10em] flex items-center flex-col justify-center gap-1">
           <img src={headsetImg} alt="" />
-          <Link className="btn btn-secondary">PC Accesories</Link>
+          <Link className="btn btn-secondary" to="/category/3">
+            PC Accesories
+          </Link>
         </div>
       </div>
     </div>

@@ -12,8 +12,6 @@ const MyBuyers = () => {
     queryFn: () => getProducts({ email: user.email, status: "sold" }),
   });
 
-  console.log(data);
-
   return (
     <>
       {isLoading && <GlobalLoader />}

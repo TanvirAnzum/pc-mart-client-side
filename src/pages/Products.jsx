@@ -12,8 +12,6 @@ const Products = () => {
     queryFn: () => getProductsByCategory(categoryId),
   });
 
-  console.log(data);
-
   return (
     <>
       {isLoading && <GlobalLoader />}

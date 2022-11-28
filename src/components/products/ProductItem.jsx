@@ -74,7 +74,7 @@ const ProductItem = ({ product, ad, index, setOpenAdModal }) => {
       <div className="w-full flex flex-col lg:flex-row items-center justify-between shadow shadow-neutral rounded p-5">
         <div className="w-full lg:w-1/3 p-3">
           <PhotoView src={image}>
-            <img src={image} alt="" className="rounded h-[20em]" />
+            <img src={image} alt="" className="rounded h-[20em] w-full" />
           </PhotoView>
         </div>
         <div className="w-full lg:w-1/3 flex flex-col gap-2 p-3 text-xl font-semibold min-h-[15em] justify-between items-start">

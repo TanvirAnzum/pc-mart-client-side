@@ -35,7 +35,7 @@ const ProductModal = ({ setModal, product }) => {
     data.product = product;
     data.buyer = user;
     data.seller = product.seller;
-    console.log(data);
+
     booking(data);
     const updatedData = { status: "booked" };
     update({ id: product._id, data: updatedData });

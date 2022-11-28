@@ -1,6 +1,7 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 import { getClientSecret, updateBooking } from "../../APIs/bookingsAPI";
 import { updateProduct } from "../../APIs/productsAPI";
@@ -15,7 +16,7 @@ const CheckOutForm = ({ booking }) => {
   const [transactionId, setTransactionId] = useState("");
   const [successCard, setSuccessCard] = useState(false);
 
-  console.log(booking);
+  const navigate = useNavigate();
 
   const queryClient = useQueryClient();
 
@@ -76,8 +77,6 @@ const CheckOutForm = ({ booking }) => {
         },
       });
 
-    console.log(paymentIntent);
-
     if (confirmError) {
       setCardError(confirmError.message);
       return;
@@ -98,6 +97,7 @@ const CheckOutForm = ({ booking }) => {
       setProcessing(false);
       setSuccessCard(true);
       toast.success("payment completed successfully");
+      navigate("/dashboard");
     }
   };
   return (

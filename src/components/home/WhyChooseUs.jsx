@@ -11,10 +11,10 @@ const WhyChooseUs = () => {
         Why Choose US!!
       </h1>
 
-      <div className="w-[80%] flex items-center justify-between">
-        <img src={choice} className="w-1/3" alt="" />
+      <div className="w-[80%] flex flex-col gap-5 md:flex-row md:gap-0 items-center justify-between">
+        <img src={choice} className="w-full md:w-1/3" alt="" />
 
-        <ul className="w-1/3 flex flex-col gap-5 items-start justify-center ">
+        <ul className="w-full md:w-1/3 flex flex-col gap-5 items-start justify-center ">
           <li className="flex items-center  gap-1">
             <img src={paymentImg} className="w-[2em]" alt="" />
             <p className="text-xl font-semibold">Trusted Payment Method</p>
