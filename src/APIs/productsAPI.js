@@ -5,11 +5,12 @@ export const createProduct = async (data) => {
   return response.data;
 };
 
-export const getProducts = async ({ email, status, boost }) => {
+export const getProducts = async ({ email, status, boost, isReported }) => {
   let query = "";
   if (email) query += `email=${email}&`;
   if (status) query += `status=${status}&`;
-  if (boost) query += `boost=${boost}`;
+  if (boost) query += `boost=${boost}&`;
+  if (isReported) query += `isReported=true`;
   const response = await axios.get(`/products?${query}`);
   return response.data;
 };

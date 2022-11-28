@@ -15,18 +15,24 @@ export const createUser = async (data, upsert) => {
   return response.data;
 };
 
-export const updateUser = async (data, id) => {
-  const response = await axios.patch(`/users/${id}`, data);
+export const updateUser = async ({ data, mail }) => {
+  console.log(data, mail);
+  const response = await axios.patch(`/users?email=${mail}`, data);
   return response.data;
 };
 
-export const deleteUser = async (id) => {
-  const response = await axios.delete(`/users/${id}`);
+export const removeUser = async (email) => {
+  const response = await axios.delete(`/users?email=${email}`);
   return response.data;
 };
 
-export const getUser = async () => {
+export const getUser = async ({ seller, buyer }) => {
   // getuser
+  let query = "";
+  if (seller) query += "seller=true";
+  if (buyer) query += "buyer=true";
+  const response = await axios.get(`/users?${query}`);
+  return response.data;
 };
 
 export const isVerified = async (email) => {

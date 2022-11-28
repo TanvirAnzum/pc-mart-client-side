@@ -63,7 +63,7 @@ const ProductItem = ({ product, ad, index, setOpenAdModal }) => {
     update({
       id: _id,
       data: {
-        isReporterd: "yes",
+        isReported: "yes",
       },
     });
     toast.success("Product reported successfully");

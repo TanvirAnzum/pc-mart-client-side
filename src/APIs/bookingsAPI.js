@@ -7,8 +7,8 @@ export const createBooking = async (data) => {
 
 export const getBookings = async ({ buyer, seller }) => {
   let query = "";
-  if (buyer) query += `buyer = ${buyer}&`;
-  if (seller) query += `seller = ${seller}`;
+  if (buyer) query += `buyer=${buyer}&`;
+  if (seller) query += `seller=${seller}`;
 
   const response = await axios.get(`/bookings?${query}`);
   return response.data;

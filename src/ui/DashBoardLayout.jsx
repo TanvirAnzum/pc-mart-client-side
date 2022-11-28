@@ -66,9 +66,24 @@ const DashBoardLayout = () => {
               )}
               {data?.role === "admin" && (
                 <>
-                  <li>All Seller</li>
-                  <li>All Buyer</li>
-                  <li>Reported Item</li>
+                  <li>
+                    <Link className="w-full h-full" to="/dashboard/allSeller">
+                      All Seller
+                    </Link>
+                  </li>
+                  <li>
+                    <Link className="w-full h-full" to="/dashboard/allBuyers">
+                      All Buyer
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      className="w-full h-full"
+                      to="/dashboard/reportedItems"
+                    >
+                      Reported Item
+                    </Link>
+                  </li>
                 </>
               )}
             </ul>
