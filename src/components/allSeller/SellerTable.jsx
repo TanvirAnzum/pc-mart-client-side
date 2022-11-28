@@ -31,6 +31,7 @@ const SellerTable = ({ seller, index, buyer }) => {
 
   const deleteHandler = (email) => {
     deleteUser(email);
+    toast.success("User deleted!");
   };
 
   return (

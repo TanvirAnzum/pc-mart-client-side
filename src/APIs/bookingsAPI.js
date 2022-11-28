@@ -14,6 +14,11 @@ export const getBookings = async ({ buyer, seller }) => {
   return response.data;
 };
 
+export const getBookingItem = async (id) => {
+  const response = await axios.get(`/bookings/${id}`);
+  return response.data;
+};
+
 export const updateBooking = async ({ id, data }) => {
   const response = await axios.patch(`/bookings/${id}`, data);
 
@@ -22,5 +27,10 @@ export const updateBooking = async ({ id, data }) => {
 
 export const deleteBooking = async (id) => {
   const response = await axios.delete(`/bookings/${id}`);
+  return response.data;
+};
+
+export const getClientSecret = async (price) => {
+  const response = await axios.post("/create-payment-intent", price);
   return response.data;
 };

@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import { PhotoView } from "react-photo-view";
+import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import { deleteBooking } from "../../APIs/bookingsAPI";
 import { updateProduct } from "../../APIs/productsAPI";
@@ -59,15 +60,28 @@ const TableContent = ({ booking, index }) => {
         <td>{product.sellingPrice + " Tk"}</td>
         <td>{seller.displayName}</td>
         <td>
-          <button className="btn btn-success w-[6em]">Pay</button>
+          {booking.transactionId ? (
+            "paid"
+          ) : (
+            <Link
+              className="btn btn-success w-[6em]"
+              to={`/dashboard/payment/${_id}`}
+            >
+              Pay
+            </Link>
+          )}
         </td>
         <td>
-          <button
-            className="btn btn-warn w-[6em]"
-            onClick={() => unBookHandler(product._id, _id)}
-          >
-            Unbook
-          </button>
+          {booking.transactionId ? (
+            "paid"
+          ) : (
+            <button
+              className="btn btn-warn w-[6em]"
+              onClick={() => unBookHandler(product._id, _id)}
+            >
+              Unbook
+            </button>
+          )}
         </td>
       </tr>
     </>

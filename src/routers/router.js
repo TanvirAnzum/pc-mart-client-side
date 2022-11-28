@@ -8,6 +8,7 @@ import Login from "../pages/Login";
 import MyBuyers from "../pages/MyBuyers";
 import MyOrder from "../pages/MyOrder";
 import MyProducts from "../pages/MyProducts";
+import Payment from "../pages/Payment";
 import Products from "../pages/Products";
 import Register from "../pages/Register";
 import ReportedItem from "../pages/ReportedItem";
@@ -122,6 +123,10 @@ export const router = createBrowserRouter([
             <ReportedItem />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: <Payment />,
       },
     ],
   },

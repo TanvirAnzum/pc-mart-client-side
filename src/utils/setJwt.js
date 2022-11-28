@@ -4,7 +4,7 @@ import { userSignOut } from "../firebase/authenticaion";
 
 export const setJwt = async (email) => {
   try {
-    const token = await getJWT(email);
+    const token = await getJWT({ email });
     console.log(token);
     localStorage.setItem("authToken", token.token);
   } catch (error) {
