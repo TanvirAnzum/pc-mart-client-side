@@ -17,6 +17,9 @@ PC mart is a website where user can buy or sell their used pc related products. 
 Live Link: https://pc-mart-e903c.web.app/
 Server side Link: https://pcmart.vercel.app/
 
+## Server side github repo
+https://github.com/TanvirAnzum/pc-mart-server-side
+
 ## Login credentials
 
 adminEmail: admin@email.com
